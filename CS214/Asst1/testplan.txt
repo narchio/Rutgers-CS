@@ -1,0 +1,14 @@
+The two workloads that we decided to include into our testing are as follows: 
+
+Workload E: 
+In this workload, we decided to call mymalloc 150 times, each time mallocing 1 byte and storing the pointer to the allocated memory in an index in an array. After all the allocations are complete, we free the pointers starting from the end of the array. This correlates to freeing the memory starting from the right side of the static char array instead of the left. The reason why we felt this was important is because myfree must be able to merge free memory properly. If it is not able to free memory, then mymalloc will not be able to successfully allocate memory and return a pointer. In the other workloads, all the freeing was done from left to right, which translates to freeing memory left to right in the static array. Obviously, myfree worked for this situation, but it also should be able to work when freeing from right to left, which is why we have this workload. The successful completion of this workload proves that myfree is able to free both from left to right and right to left. This also shows that the structure of the list is maintained, even when freeing pointers starting from the end of the static array. 
+
+Workload F: 
+In this workload, we build off of workload E. This time, instead of mallocing 150 1 byte memory segments, we repeatedly malloc 2 byte chunks of memory and store the pointers in an array until the static array is completely saturated and mymalloc cannot return a pointer anymore. After this, we free the pointers stored at the even indexes from left to right, and free the pointers stored at the odd indexes from right to left. The reason for this workload is to ensure that myfree works when called on pointers that may be surrounded by adjacent free memory on both, or one of either sides, instead of consecutively freeing memory which will always be free on one side. This is extremely important, because if myfree is not able to free in this manner, than this can lead to memory leaks and segmentation faults. Freeing the even-indexed pointers from left to right and the odd-indexed pointers from right to left enables myfree to test having to merge memory in 3 different cases: 
+	1. FREEBLOCK -> FREEBLOCK -> NOTFREEBLOCK 
+	
+	2. NOTFREEBLOCK -> FREEBLOCK -> FREEBLOCK 
+	
+	3. FREEBLOCK -> FREEBLOCK -> FREEBLOCK 
+	
+Each of these scenarios will be encountered in workload F, and it is exetremely important for myfree to be able to gracefully handle all of these cases without any issues. 

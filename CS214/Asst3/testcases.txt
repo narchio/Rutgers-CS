@@ -1,0 +1,453 @@
+The testcases below are for the following commands. 
+    - create
+    - destroy 
+    - add
+    - remove
+    - checkout
+    - currentversion 
+    - commit
+
+These were the only commands we were able to complete. For each testcase, we will document what the directories/file contents should look like post-command call. Assume the client and server directories do not have any extra files or directories in them at the time of invocation.
+
+TESTCASE #1: Calling create without calling configure
+    - ./WTF create project1
+    - Result: A message should appear to STDOUT indicating that no .configure file exists in the client directory and that the client was unable to fetch the IP of the server from the manifest file in order to connect. 
+
+TESTCASE #2: Calling create after calling configure 
+    - ./WTF configure 128.6.13.218 19915
+    - ./WTF create project1 
+    - Result: A .configure file should be created in the client directory. Within the .configure file, the first line should contain the IP address passed to configure and the second line should contain the PORT passed to configure. 
+    Within the server directory, a new directory named project1 should be created. Within project1, a subdirectory called version1 should exist. Within the version1 directory, a .Manifest file should exist with a 1 written to its first line and nothing else. 
+    The project1 directory should then be tarred and sent over the to the client and untarred within the client directory. The project1 directory within the client directory should have the same structure as in the server directory. 
+
+    - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+        - project1: 
+            - version1: 
+                - .Manifest 
+                    - 1 (manifest contents)
+
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+                - .Manifest
+                    - 1 (manifest contents)
+
+
+TESTCASE #3: Creating projects and then destroying them after calling configure 
+    - ./WTF configure 128.6.13.218 19915 
+    - ./WTF create project1 
+    - ./WTF create project2 
+    - ./WTF create project3 
+    - ./WTF destroy project3 
+    - ./WTF destroy project2 
+    - ./WTF destroy project1 
+    - Result: A .configure file should be created in the client directory, with the IP passed in the configure command on the first line of the file and the PORT passed to the configure command on the second line of the file. 
+    project1, project2, and project3 should all contain subdirectories called version1 with .Manifest files in each. Each .Manifest file should have a 1 on the first line and nothing else. 
+    project1, project2, and project3 should be created on the server side, and after each project's creation, tarred, and sent to the client. After each destroy command, project1, project2, and project3 should all be removed from the server directory. 
+    project1, project2, and project3 should all still remain in the client directory 
+
+    - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+                - .Manifest
+                    - 1 (manifest contents)
+        - project2: 
+            - version1: 
+                - .Manifest
+                    - 1 (manifest contents)
+        - project3: 
+            - version1: 
+                - .Manifest
+                    - 1 (manifest contents)
+
+TESTCASE #4: Testing the add/remove functionality. This testcase assumes that file.txt, testfile.c, and picture.png are already created and located at the path passed in the command and that the project1 directory exists on the client side. 
+    - ./WTF configure 128.6.13.218 19915
+    - ./WTF add project1 project1/version1/file.txt 
+    - ./WTF add project1 project1/version1/testfile.c 
+    - ./WTF add project1 project1/version1/picture.png
+    - ./WTF remove project1 project1/version1/testfile.c 
+    - Result: A .configure file with the same format as the previous testcases should be created in the client directory. Within the .Manifest file located at project1/version1, following the manifest version number on the first line, there should be two subsequent lines, each representing an entry for file.txt and picture.png respectively. 
+    Each entry begins with a file version number of 1, followed by a space, followed by project1/version1/file.txt or project1/version1/picture.png depending on which file, and the hash of that file's contents 
+
+    - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+        - project1: 
+            - version1: 
+                - .Manifest 
+                    - 1 (manifest contents)
+
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+                - file.txt
+                - testfile.c 
+                - picture.png
+                - .Manifest
+                    - 1 (manifest contents)
+                    - 1 project1/version1/file.txt <file.txt's hash of contents>
+                    - 1 project1/version1/picture.png <picture.png's hash of contents>
+
+TESTCASE #5: Testing checkout and currentversion (this test case assumes that project1 already exits on the server and not on the client)
+    - ./WTF configure 128.6.13.218 19915 
+    - ./WTF currentversion project1 
+    - ./WTF checkout project1 
+    - Result: A .configure file should be created in the client directory. Upon calling currentversion, every entry in project1's manifest file should be printed in the following format: <filepath> : <fileversion>. 
+    project1 should then be tarred, and sent over to the client, where it is untarred on the client side 
+
+    Output from currentversion: 
+        project1/version1/file.txt : 1
+        project1/version1/testfile.c : 1
+        project1/version1/pictures/picture.png : 1
+        project1/version1/data/info.csv : 1
+
+        - server: 
+            - WTFserver.c
+            - WTFserver.h 
+            - WTFserver (executable)
+            - serverfunctions.c 
+            - serverfunctions.o 
+            - Makefile 
+            - project1: 
+                - version1: 
+                    - file.txt
+                    - testfile.c 
+                    - pictures: 
+                        - picture.png 
+                    - data: 
+                        - info.csv 
+                    - .Manifest 
+                        - 1 (manifest contents)
+                        - 1 project1/version1/file.txt <hash>
+                        - 1 project1/version1/testfile.c <hash>
+                        - 1 project1/version1/pictures/picture.png <hash>
+                        - 1 project1/version1/data/info.csv <hash>
+
+
+        - client: 
+            - WTF.c 
+            - WTF.h 
+            - WTF (executable)
+            - clientfunctions.c 
+            - clientfunctions.o 
+            - Makefile
+            - .configure: 
+                - 128.6.13.218
+                - 19915
+             - project1: 
+                    - version1: 
+                    - file.txt
+                    - testfile.c 
+                    - pictures: 
+                        - picture.png 
+                    - data: 
+                        - info.csv 
+                    - .Manifest 
+                        - 1 (manifest contents)
+                        - 1 project1/version1/file.txt <hash>
+                        - 1 project1/version1/testfile.c <hash>
+                        - 1 project1/version1/pictures/picture.png <hash>
+                        - 1 project1/version1/data/info.csv <hash>
+
+For the add: 
+
+TESTCASE #6: Testing the remove and replace portion of add, that updates the hash of an entry if the file path is already in the .Manifest file on the client side. 
+ 	- ./WTF configure 128.6.13.218 19915
+	- ./WTF add project1 project1/version1/testfile.txt
+	- ./WTF add project project1/version1/testfile.c
+	(now the user changes the contents of the testfile.txt)
+	- ./WTF add project1 project1/version1/testfile.txt
+
+For an add, we are only concerned with the client side. 
+Before the test file is updated: 
+	- client: 
+            - WTF.c 
+            - WTF.h 
+            - WTF (executable)
+            - clientfunctions.c 
+            - clientfunctions.o 
+            - Makefile
+            - .configure: 
+                - 128.6.13.218
+                - 19915
+             - project1: 
+                    - version1: 
+                    	- testfile.txt
+                    	- testfile.c 
+                    	- .Manifest 
+                       		- 1 (manifest contents)
+                       	 	- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+                       		- 1 project1/version1/testfile.c <hash>
+
+After the testfile.txt is updated
+	- client: 
+            - WTF.c 
+            - WTF.h 
+            - WTF (executable)
+            - clientfunctions.c 
+            - clientfunctions.o 
+            - Makefile
+            - .configure: 
+                - 128.6.13.218
+                - 19915
+             - project1: 
+                    - version1: 
+                    	- testfile.txt
+                    	- testfile.c 
+                    	- .Manifest 
+                       		- 1 (manifest contents)
+                       		- 1 project1/version1/testfile.c <hash>
+				- 1 project1/version1/testfile.txt <hashEndingIn:n9v>
+                       	 	
+
+Result: When the file path is found in the .Manifest, that already contains a hash, the add function will store the file version number and the file path, but calculate a new hash. It will then remove that line from the .Manifest, and replace it with a new line of the same file version number, file path, along with the new hash contents, reflecting the change. 
+
+TESTCASE #7: Testing an add on a file that is not in the client's repository. 
+	- ./WTF configure 128.6.13.218 19915
+	- ./WTF add project1 project1/version1/testfile.txt
+
+	- client: 
+            - WTF.c 
+            - WTF.h 
+            - WTF (executable)
+            - clientfunctions.c 
+            - clientfunctions.o 
+            - Makefile
+            - .configure: 
+                - 128.6.13.218
+                - 19915
+             - project1: 
+                    - version1: 
+                    	- testfile.c
+                    	- .Manifest 
+                       		- 1 (manifest contents)
+                       		- 1 project1/version1/testfile.c <hash>
+
+Result: This will print an error to STDOUT, informing the user that the file path does not exist and thus cannot be added to the .Manifest (cannot calculate hash, either). Additionally, the program will exit with a failure. 
+
+
+
+For the commit: 
+
+TESTCASE #8: Testing if the commit is empty, then the client will let the user and server know that it is up to date. 
+	- ./WTF configure 128.6.13.218 19915
+	- ./WTF commit project1 
+	
+	(After the commit_command runs, if the .Commit is empty and there are no contents in it then it is up to date. 
+
+Result: If the .Commit is empty, the client will let the user and server know that it is up to date with the STDOUT message for the user, saying that it is up to date. 
+	
+
+
+TESTCASE #9: If the file is in both the server and the client with the same version number, but the client has a different hash for the file. 
+	- ./WTF configure 128.6.13.218 19915
+	- ./WTF commit project1
+
+
+Before the commit: 
+ - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+        - project1: 
+            - version1: 
+		- testfile.txt
+                - .Manifest 
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+		- testfile.txt
+                - .Manifest
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:n9v>
+
+After the commit: 
+ - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+        - project1: 
+            - version1: 
+		- testfile.txt
+                - .Manifest 
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+		- .Commit 
+			- o 2 project1/version1/testfile.txt <hashEndingIn:n9v>
+
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+		- testfile.txt
+                - .Manifest
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:n9v>
+		- .Commit 
+			- o 2 project1/version1/testfile.txt <hashEndingIn:n9v>
+
+Result: In this case, the client creates a .Commit of this file, and sends it to the server with incremented version number and the 'o' flag, indicating that the current file must be overwritten on the server's manifest during push. 
+
+
+TESTCASE #10: For add and remove files through a .Commit, the add files will be inserted with an 'a' flag and the remove files will not be inserted into the .Commmit. 
+	- ./WTF configure 128.6.13.218 19915
+	- ./WTF commit project1
+
+Before commit: 
+ - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+        - project1: 
+            - version1: 
+		- testfile.txt
+		- testfile.c
+		
+                - .Manifest 
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+			- 1 project1/version1/testfile.c <hashEndingIn:43t>
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+		- testfile.txt
+		- testfile.c
+		- proj.pl
+                - .Manifest
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+			- 1 project1/version1/proj.pl <hashEndingIn:q6k>
+
+After commit: 
+ - server: 
+        - WTFserver.c
+        - WTFserver.h 
+        - WTFserver (executable)
+        - serverfunctions.c 
+        - serverfunctions.o 
+        - Makefile 
+        - project1: 
+            - version1: 
+		- testfile.txt
+		- testfile.c
+                - .Manifest 
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+			- 1 project1/version1/testfile.c <hashEndingIn:43t>
+		- .Commit
+			- r 1 project1/version1/testfile.c <hashEndingIn:43t>
+			- a 1 project1/version1/proj.pl <hashEndingIn:q6k>
+    - client: 
+        - WTF.c 
+        - WTF.h 
+        - WTF (executable)
+        - clientfunctions.c 
+        - clientfunctions.o 
+        - Makefile
+        - .configure: 
+            - 128.6.13.218
+            - 19915
+        - project1: 
+            - version1: 
+		- testfile.txt
+		- testfile.c
+		- proj.pl
+                - .Manifest
+                    	- 1 (manifest contents)
+			- 1 project1/version1/testfile.txt <hashEndingIn:8pb>
+			- 1 project1/version1/proj.pl <hashEndingIn:q6k>
+		- .Commit
+			- r 1 project1/version1/testfile.c <hashEndingIn:43t>
+			- a 1 project1/version1/proj.pl <hashEndingIn:q6k>
+
+
+Result: In this command, a Commit was called that: 
+	- kept testfile.txt the same, as the hash did not change and thus was not included in the .Commit
+	- removed testfile.c from the client's project by deleting from the manifest, thus the .Commit will include it with an 'r', and when the file is sent over in push because it was removed from the client, it will be deleted on the server side. 
+	- added proj.pl to the .Commit file via the 'a' symbol. When push is called, this file will be committed to the server and added to the server's manifest.
+Overall, the commit command allows the user to keep track of the changes they made on the client side, to then be sent over to the server. 
+
+Through all our numerous tests (too many to include every last one), these were the big tests that we believe demonstrate the intricacy of our tests, that spanned from error checking to accuracy to multithreading. 

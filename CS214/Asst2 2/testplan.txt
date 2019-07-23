@@ -1,0 +1,308 @@
+“testplan.txt” that details the testing you ran your program through
+
+
+Our tests consisted of regular function tests, as well as recursive tests. 
+
+test.txt = "Nory was a Catholic because her mother was a Catholic,
+and Nory’s mother was a Catholic because her father was a Catholic,
+and her father was a Catholic because his mother was a Catholic, or had been."
+
+
+
+-b
+./fileCompressor -b "test.txt" 
+
+Output: 
+0
+1000    \n
+10010   father
+100110  Nory’s
+100111  been.
+10100   and
+101010  Nory
+101011  or
+101100  had
+101101  his
+10111   mother
+1100    a
+1101    was
+11100   because
+11101   Catholic
+11110   Catholic,
+11111   her
+
+
+./fileCompressor -b "readme.pdf" 
+
+0
+10000000        us
+100000010       Complexity:
+100000011       algorithm.
+100000100       easy
+100000101       algorithms
+100000110       create
+100000111       optimal
+100001000       good
+100001001       Minheap:
+100001010       describes
+100001011       fine.
+100001100       first
+100001101       works
+100001110       three
+100001111       other
+100010000       up
+100010001       Design/Implementation:
+100010010       allowing
+100010011       function
+100010100       however
+100010101       =
+10001011        used
+100011000       down
+100011001       that,
+100011010       difficult
+100011011       allowed
+10001110        AVL
+10001111        with
+100100000       analysis
+100100001       “readme.pdf”
+100100010       into
+100100011       believe
+100100100       you
+100100101       Adam
+100100110       program's
+100100111       deleting,
+10010100        analyze
+100101010       part
+100101011       You
+10010110        was
+10010111        very
+10011000        Huffman
+100110010       translating
+100110011       nodes.
+1001101 we
+100111000       files,
+100111001       wrote()
+100111010       design
+100111011       store
+100111100       ,
+100111101       all
+100111110       did
+100111111       driver.
+101000000       decompressing
+101000001       parts,
+101000010       tokenize
+101000011       file.
+101000100       use
+101000101       files
+101000110       structure
+101000111       -
+101001000       tokens
+101001001       Coding.
+101001010       them
+101001011       over
+101001100       do
+101001101       sorting
+101001110       structures
+101001111       read.
+10101   and
+101100000       some
+101100001       put
+101100010       usage
+101100011       searched
+101100100       (bnodes)
+101100101       For
+10110011        space
+10110100        avltree.c
+101101010       Once
+101101011       at
+1011011 	our
+101110  	of
+1011110 	an
+1011111 	for
+11000   	the
+110010000       main
+110010001       long,
+11001001        is
+1100101 it
+11001100        complexity
+11001101        are
+11001110        as
+11001111        I
+110100000       manner,
+1101000010      bnode
+1101000011      job!
+11010001        in
+11010010        but
+1101001100      AVL:
+1101001101      Minheap
+110100111       compressing
+110101  to
+11011   \n
+1110000 a
+111000100       size
+1110001010      all,
+1110001011      file,
+1110001100      tokenizer
+1110001101      overall
+1110001110      There
+1110001111      correct
+1110010000      need
+1110010001      modularized
+1110010010      After
+1110010011      Time/Space
+1110010100      chose
+1110010101      minheap.
+1110010110      minheap.c,
+1110010111      minheap.c
+111001100       implementation
+1110011010      node)
+1110011011      Binary
+1110011100      minheap
+1110011101      based
+1110011110      codebook.
+1110011111      moving
+11101000        binary
+1110100100      from
+1110100101      fulfill
+1110100110      through
+1110100111      We
+1110101000      implemented
+1110101001      input
+111010101       inserting,
+1110101100      holds
+1110101101      ideal,
+1110101110      then
+1110101111      decompressing,
+111011000       nodes
+1110110010      functions
+1110110011      function,
+111011010       minheap,
+111011011       n*log(n)
+1110111000      whether
+1110111001      Having
+1110111010      necessary
+1110111011      contain
+1110111100      right
+1110111101      encoding
+1110111110      sorts.
+1110111111      fileCompressor
+1111000000      tree
+1111000001      program.
+1111000010      there
+1111000011      data
+11110001        time
+1111001000      Usage:
+1111001001      build
+111100101       your
+1111001100      information,
+1111001101      Coding
+111100111       filecompressor.c
+1111010000      input.
+1111010001      include
+1111010010      while
+1111010011      manageable
+111101010       array
+1111010110      Tree:
+1111010111      decoding
+1111011000      HuffmanCodebook
+1111011001      hold
+111101101       that
+1111011100      speeds,
+1111011101      (compressing
+1111011110      should
+1111011111      sifting
+1111100000      The
+1111100001      both
+1111100010      O(n^2)
+1111100011      because
+1111100100      *
+1111100101      All
+1111100110      many
+1111100111      count
+111110100       n
+1111101010      implement
+1111101011      (a
+111110110       not
+1111101110      timely
+1111101111      off
+1111110000      n^2
+1111110001      This
+111111001       convert
+111111010       total
+111111011       algorithm
+1111111000      occurrences.
+1111111001      decompressing).
+111111101       or
+1111111100      every
+1111111101      encodings
+1111111110      designed
+1111111111      Then,
+
+
+
+(Dear grader, 
+	many of our test cases like the last test case were very long, we tested those cases on the other -c and -d functions, and they passed successfully, just as they did for the smaller ones, it seemed to be too much to fit so we did not put them in this file but we did test them, we promise!) 
+
+
+-c 
+./fileCompressor -c "test.txt" HuffmanCodebook
+
+Output: 101010011010110001110101110001111101011101101011000111101000101000100110010111011010110001110101110001111101001001101011000111101000101000111110100100110101100011101011100010110101011101101011000111100101011010110001001111000
+
+// also compressed the test case above, very long so didn't put it in because it would have taken unnecessary space
+
+
+-d
+./fileCompressor -d "test.txt.hcz" HuffmanCodebook
+
+Output: 
+Nory was a Catholic because her mother was a Catholic,
+and Nory’s mother was a Catholic because her father was a Catholic,
+and her father was a Catholic because his mother was a Catholic, or had been.
+
+// also compressed the test case above (with build), very long so didn't put it in because it would have taken unnecessary space 
+
+
+
+-R
+
+./fileCompressor -R -b ./Asst2/testdir
+0
+10000   or
+10001   And
+100100  Nory’s
+100101  and
+10011   been.
+10100   father
+10101   her
+1011    a
+11000   \n
+11001   Catholic,
+11010   because
+11011   Catholic
+1110    was
+11110   mother
+111110  had
+111111  his
+
+./fileCompressor -R -c ./Asst2/testdir/tests.txt HuffmanCodebook
+
+101010011010110001110101110001111101011101101011000111101000101000100110010111011010110001110101110001111101001001101011000111101000101000111110100100110101100011101011100010110101011101101011000111100101011010110001001111000
+
+./fileCompressor -R -d ./Asst2/testdir/tests.txt.hcz HuffmanCodebook
+
+Nory was a Catholic because her mother was a Catholic,
+and Nory’s mother was a Catholic because her father was a Catholic,
+and her father was a Catholic because his mother was a Catholic, or had been.
+
+
+
+Overall, 
+These test cases listed demonstrated the examples that we used to show that all our functions work. For edge cases like bad inputs, we have covered those by exiting and printing an error message to make it clear where the error happened and why. Some of these cases were: 
+	- Incorrect paths
+	- incorrect inputs other than -R -c -d -b
+	- improper placement of inputs
+	- If token was not in the HuffmanCodebook, that will be reported as an error
+	- If the file inputted is not there/doesn't exist
+	.... etc.  
+
