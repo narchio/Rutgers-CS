@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/green"
+    tools:context=".PlayActivity">
+
+    <com.example.android56.ChessBoard
+        android:id="@+id/playthroughChessBoard"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="384dp"
+        tools:ignore="Missing Constraints"/>
+
+    <Button
+        android:id="@+id/previousMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playthroughChessBoard"
+        android:background="@color/dark_green"
+        android:text="@string/previousMove"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="45dp"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/nextMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playthroughChessBoard"
+        android:layout_toRightOf="@id/previousMove"
+        android:background="@color/dark_green"
+        android:text="@string/nextMove"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="45dp"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:orientation="vertical"
+    tools:context=".PlaybackActivity">
+
+
+    <TextView
+        android:id="@+id/sortByGameTitle"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="Game Title"/>
+
+    <TextView
+        android:id="@+id/sortByDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sortByGameTitle"
+        android:layout_marginLeft="10dp"
+        android:text="Date"
+        android:textSize="20dp" />
+
+    <ListView
+        android:id="@+id/gamesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sortByDate" />
+
+
+</RelativeLayout>

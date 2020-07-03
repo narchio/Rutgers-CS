@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:background="@color/green"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/welcome_screen_title"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginTop="35dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/authorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/welcome_screen_authors"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/play_button_text"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/play"
+            android:drawableTint="@color/white"
+            android:drawablePadding="4dp"
+            android:background="@color/dark_green"
+            android:padding="4dp"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:id="@+id/instructionsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/instructions_button_text"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/instructions"
+            android:drawableTint="@color/white"
+            android:background="@color/dark_green"
+            android:drawablePadding="4dp"
+            android:padding="4dp"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:id="@+id/playbackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/playback_button_text"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:drawableTint="@color/white"
+            android:drawableLeft="@drawable/playback"
+            android:background="@color/dark_green"
+            android:drawablePadding="4dp"
+            android:padding="4dp"
+            android:layout_marginTop="50dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

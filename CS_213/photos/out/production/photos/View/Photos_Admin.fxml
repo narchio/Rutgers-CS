@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane fx:controller="Controller.AdminController" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView fx:id="userList" layoutX="75.0" layoutY="125.0" prefHeight="500.0" prefWidth="400.0"/>
+      <Label layoutX="225.0" layoutY="62.0" prefHeight="50.0" prefWidth="100.0" text="Users">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button onAction="#logout" layoutX="437.5" layoutY="675.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Logout">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="657.5" layoutY="125.0" prefWidth="160.0" text="Add User">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameField" layoutX="600.0" layoutY="200.0" prefHeight="50.0" prefWidth="275.0" promptText="Enter Username...">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <Button onAction="#addUser" layoutX="695.0" layoutY="340.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" text="ADD">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="637.5" layoutY="430.0" prefWidth="200.0" text="Delete User">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button onAction="#deleteUser" layoutX="675.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="DELETE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

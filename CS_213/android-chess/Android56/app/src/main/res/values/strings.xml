@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Mobile Chess</string>
+    <string name="welcome_screen_title">Welcome to Mobile Chess</string>
+    <string name="welcome_screen_authors">By: Adam Romano and Nicolas Carchio</string>
+    <string name="play_button_text">PLAY</string>
+    <string name="instructions_button_text">INSTRUCTIONS</string>
+    <string name="playback_button_text">PLAYBACK</string>
+    <string name="exit_button_text">EXIT</string>
+    <string name="undo_button_text">UNDO</string>
+    <string name="ai_button_text">AI</string>
+    <string name="draw_button_text">DRAW</string>
+    <string name="resign_button_text">RESIGN</string>
+    <string name="whiteMove">White Move</string>
+    <string name="blackMove">Black Move</string>
+    <string name="nextMove">NEXT MOVE</string>
+    <string name="previousMove">PREV MOVE</string>
+</resources>

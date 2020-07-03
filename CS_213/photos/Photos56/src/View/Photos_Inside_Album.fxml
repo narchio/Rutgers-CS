@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.image.ImageView?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InsideAlbumController">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="335.0" fitWidth="335.0"></ImageView>
+      <Label fx:id="albumName" layoutX="50.0" layoutY="50.0" prefWidth="220.0" text="Album Name:">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <ListView fx:id="photolist" layoutX="50.0" layoutY="125.0" prefHeight="250.0" prefWidth="900.0" />
+      <Label layoutX="142.5" layoutY="385.0" prefHeight="40.0" prefWidth="65.0" text="Tags">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <ListView fx:id="taglist" layoutX="50.0" layoutY="435.0" prefHeight="125.0" prefWidth="250.0" />
+      <ComboBox fx:id="defaultTagComboBox" layoutX="50.0" layoutY="573.0" prefWidth="250.0" />
+      <Button onAction="#addTag" layoutX="70.0" layoutY="675.0" mnemonicParsing="false" text="ADD">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button onAction="#removePhoto" layoutX="485.0" layoutY="530.0" mnemonicParsing="false" text="REMOVE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="455.0" layoutY="385.0" prefHeight="40.0" prefWidth="90.0" text="Photos">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button onAction="#choosePhoto" layoutX="405.5" layoutY="445.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="185.0" text="Choose Photo">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label fx:id="filePickerSelectedPhoto" layoutX="460" layoutY="500" text="">
+         <font>
+            <Font size = "15"/>
+         </font>
+      </Label>
+      <Button onAction="#addPhoto" layoutX="385.0" layoutY="530.0" mnemonicParsing="false" text="ADD">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <TextField fx:id="albumField" layoutX="345.0" layoutY="613.0" promptText="Album Name....">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <Button onAction="#deleteTag" layoutX="170.0" layoutY="675.0" mnemonicParsing="false" text="DELETE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button onAction="#copyTo" layoutX="345.0" layoutY="675.0" mnemonicParsing="false" text="COPY TO">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button onAction="#moveTo" layoutX="511.0" layoutY="675.0" mnemonicParsing="false" text="MOVE TO">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tagnamevalue" layoutX="50.0" layoutY="613.0" prefWidth="250.0" promptText="Tag Name/Value...">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <Button onAction="#home" layoutX="692.0" layoutY="50.0" mnemonicParsing="false" text="HOME">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button onAction="#logout" layoutX="815.0" layoutY="50.0" mnemonicParsing="false" text="LOGOUT">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="775.0" layoutY="388.0" prefHeight="40.0" prefWidth="115.0" text="Captions">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="caption" layoutX="700.0" layoutY="435.0" prefWidth="250.0" promptText="Caption...">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <Button onAction="#addCaption" layoutX="758.0" layoutY="502.0" mnemonicParsing="false" text="CAPTION">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button onAction="#searchAlbum" layoutX="721.0" layoutY="675.0" mnemonicParsing="false" text="SEARCH">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button onAction="#clearSearch" layoutX="860" layoutY="675" text="CLEAR">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+
+      <Label layoutX="787.0" layoutY="614.0" prefHeight="40.0" prefWidth="90.0" text="Search">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
