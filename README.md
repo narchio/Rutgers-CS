@@ -1,4 +1,4 @@
-# Rutgers-CS
+# Rutgers Undergraduate Portfolio
 ## This repository is the culmination of my undergraduate Computer Science projects and coursework during my time at Rutgers. 
 
 ###### CS 111 - Introduction to Computer Science 
