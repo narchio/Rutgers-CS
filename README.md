@@ -35,5 +35,5 @@ I am facinated with Artificial Intelligence, especially in the areas of Computer
         - Creating line detector neurons 
 
 
-### Stay tuned for all work while I pursue my M.Eng in CS at Cornell! 
+### Stay tuned for all my new updates while I pursue my M.Eng in CS at Cornell! 
 
