@@ -15,6 +15,13 @@
 
 
 ## Note: 
+I am a full stack software engineer. I have had many experiences in the industry already through my school work and internships building products.
+
+  ###### CS 213 - Building Desktop/Mobile Apps with Java  
+      - Song Library and Photo Library apps for desktop  
+      - Chess game for desktop and mobile (andriod)  
+      - Written in Java, developed on both JavaFx and Android Studio, respectively
+        
 I am facinated with Artificial Intelligence, especially in the areas of Computer Vision and Machine Learning. Below are direct courses/projects that relate to these topics that I have done during my undergraduate coursework.
 
   ###### CS 440 (AI) - Machine Learning 
@@ -26,3 +33,7 @@ I am facinated with Artificial Intelligence, especially in the areas of Computer
       - Building 2 Spiking Neural Networks: 
         - Creating an XOR gate with spiking neurons
         - Creating line detector neurons 
+
+
+### Stay tuned for all work while I pursue my M.Eng in CS at Cornell! 
+
