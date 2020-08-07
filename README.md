@@ -15,7 +15,7 @@
 
 
 ## Note: 
-I am a full stack software engineer. I have had many experiences in the industry already through my school work and internships building products. Below is a course focused specifically on real-world Software Engineering. 
+I am a full stack software engineer. I have had many experiences in the industry already through my school work and internships building products. Below is a course which focused specifically on real-world Software Engineering. 
 
   ###### CS 213 - Building Desktop/Mobile Apps with Java  
       - Song Library and Photo Library apps for desktop  
